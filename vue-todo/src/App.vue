@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -22,11 +25,27 @@ import TodoFooter from './components/TodoFooter.vue';
 // })
 export default {
   components: {
-    'TodoHeader': TodoHeader
+    'TodoHeader': TodoHeader,
+    'TodoInput': TodoInput,
+    'TodoList': TodoList,
+    'TodoFooter': TodoFooter
   }
 }
 </script>
 
 <style>
-
+  body {
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+  }
+  input {
+    border-style: groove;
+    width: 200px; 
+  }
+  button {
+    border-style: groove;
+  }
+  .shadow {
+    box-shadow: 5px 5px 5px rgb(51, 48, 48);
+  }
 </style>
