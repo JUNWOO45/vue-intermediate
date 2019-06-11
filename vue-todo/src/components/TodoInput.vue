@@ -17,6 +17,9 @@ export default {
   methods: {
     addTodo: function() {
       localStorage.setItem(this.newTodoItem, this.newTodoItem);
+      this.clearInput();
+    },
+    clearInput: function() {
       this.newTodoItem = "";
     }
   }
