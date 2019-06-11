@@ -46,6 +46,6 @@ export default {
     border-style: groove;
   }
   .shadow {
-    box-shadow: 5px 5px 5px rgb(51, 48, 48);
+    box-shadow: 2px 2px 2px gray;
   }
 </style>
