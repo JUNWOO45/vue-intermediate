@@ -1,8 +1,8 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem, index) in todoItems" :key="todoItem" class="shadow">
-        <i class="fas fa-check" :class="{checkBtnClicked: todoItem.completed}" @click="toggleComplete"></i>
+      <li v-for="(todoItem, index) in todoItems" :key="todoItem.item" class="shadow">
+        <i class="fas fa-check" :class="{checkBtnClicked: todoItem.completed}" @click="toggleComplete(todoItem, index)"></i>
         <span :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
         <span class="removeContainer" @click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt removeBtn"></i>
@@ -24,8 +24,11 @@ export default {
       localStorage.removeItem(todoItem);
       this.todoItems.splice(index, 1);
     },
-    toggleComplete: function() {
-
+    toggleComplete: function(todoItem, index) {
+      todoItem.completed = !todoItem.completed;
+      //localStorage에 update API가 없어서 삭제하고 다시 등록.
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
   created: function() {
