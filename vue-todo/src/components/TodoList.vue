@@ -1,9 +1,13 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem, index) in todoItems" :key="todoItem.item" class="shadow">
-        <i class="fas fa-check" :class="{checkBtnClicked: todoItem.completed}" @click="toggleComplete(todoItem, index)"></i>
-        <span :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
+      <li v-for="(todoItem, index) in propsdata" :key="todoItem.item" class="list-container shadow">
+        <i 
+          class="fas fa-check checkBtn" 
+          :class="{checkBtnClicked: todoItem.completed}" 
+          @click="toggleComplete(todoItem, index)"
+        ></i>
+        <span class="individual-list" :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
         <span class="removeContainer" @click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt removeBtn"></i>
         </span>
@@ -14,11 +18,7 @@
 
 <script>
 export default {
-  data: function() {
-    return {
-      todoItems: []
-    }
-  },
+  props: ['propsdata'],
   methods : {
     removeTodo: function(todoItem, index) {
       localStorage.removeItem(todoItem);
@@ -31,17 +31,7 @@ export default {
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
-  created: function() {
-    if(localStorage.length > 0) {
-      for(let i = 0; i < localStorage.length; i++) {
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
-          // this.todoItems.push(localStorage.key(i));
-        }
-      }
-    }
-  }
+  
 }
 </script>
 
@@ -61,15 +51,25 @@ export default {
     padding: 15px;
     background: white;
     border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .checkBtn {
+    color: green;
+    vertical-align: bottom;
+  }
+  .individual-list{
+
   }
   .removeContainer {
-    margin-left: auto;
+    /* margin-left: auto; */
     color: rgb(36, 33, 33);
   }
   .removeBtn {
     font-size: 20px;
     color: rgb(138, 0, 0);
   }
+  
   .checkBtnCompleted {
     color: pink;
   }
