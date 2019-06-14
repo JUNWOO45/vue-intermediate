@@ -3,11 +3,20 @@
     <ul>
       <li v-for="(todoItem, index) in propsdata" :key="todoItem.item" class="list-container shadow">
         <i 
-          class="fas fa-check checkBtn" 
-          :class="{checkBtnClicked: todoItem.completed}" 
+          class="far fa-square checkBtn" 
+          :class="{checkBtnClicked: todoItem.completed}"
           @click="toggleComplete(todoItem, index)"
         ></i>
-        <span class="individual-list" :class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
+        <i class="far fa-check-square invisible"
+          v-bind:class="{alreadyChecked: todoItem.completed}"
+          @click="toggleComplete(todoItem, index)"
+        ></i>
+        <span 
+          class="individual-list" 
+          :class="{textCompleted: todoItem.completed}"
+        >
+          {{ todoItem.item }}
+        </span>
         <span class="removeContainer" @click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt removeBtn"></i>
         </span>
@@ -21,8 +30,7 @@ export default {
   props: ['propsdata'],
   methods : {
     removeTodo: function(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+      this.$emit('removeItem', todoItem, index);
     },
     toggleComplete: function(todoItem, index) {
       todoItem.completed = !todoItem.completed;
@@ -55,23 +63,27 @@ export default {
     align-items: center;
   }
   .checkBtn {
-    color: green;
+    color: black;
     vertical-align: bottom;
+    font-size: 30px;
   }
-  .individual-list{
-
+  .invisible{
+    display: none;
+  }
+  .alreadyChecked {
+    display: block;
+    font-size: 30px;
+    color: black;
   }
   .removeContainer {
-    /* margin-left: auto; */
     color: rgb(36, 33, 33);
   }
   .removeBtn {
     font-size: 20px;
     color: rgb(138, 0, 0);
   }
-  
-  .checkBtnCompleted {
-    color: pink;
+  .checkBtnClicked {
+    display: none;
   }
   .textCompleted {
     text-decoration: line-through;
