@@ -33,10 +33,7 @@ export default {
       this.$emit('removeItem', todoItem, index);
     },
     toggleComplete: function(todoItem, index) {
-      todoItem.completed = !todoItem.completed;
-      //localStorage에 update API가 없어서 삭제하고 다시 등록.
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit('toggleItem', todoItem, index);
     }
   },
   
@@ -74,6 +71,9 @@ export default {
     display: block;
     font-size: 30px;
     color: black;
+  }
+  .individual-list{
+    font-size: 30px;
   }
   .removeContainer {
     color: rgb(36, 33, 33);
