@@ -1,10 +1,18 @@
-# vue-intermediate
-Vue.js 중급 강좌를 위한 리포지토리입니다.
+# vue-todo
 
-## 목차
-- Vue.js로 구현하는 TodoApp
-- Vue.js를 위한 ES6
-- 복잡한 애플리케이션 구현을 위한 Vuex
+> A Vue.js project
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
 
 ## License & Copyright
 **Copyright © 2018 Captain Pangyo**
