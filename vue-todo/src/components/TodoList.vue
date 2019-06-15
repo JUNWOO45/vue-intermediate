@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(todoItem, index) in propsdata" :key="todoItem.item" class="list-container shadow">
         <i 
           class="far fa-square checkBtn" 
@@ -21,7 +21,7 @@
           <i class="fas fa-trash-alt removeBtn"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -88,6 +88,19 @@ export default {
   .textCompleted {
     text-decoration: line-through;
     color: gray;
+  }
+
+  /* 리스트 아이템 트랜지션 */
+  .list-enter-active {
+    transition: all 0.2s;
+  }
+  .list-leave-active {
+    transition: all 0.5s;
+  }
+
+  .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(30px);
   }
 </style>
 

@@ -1,10 +1,11 @@
 <template>
-  <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
-    <span class="addContainer" @click="addTodo">
-      <i class="fas fa-folder-plus addBtn"></i>
-    </span>
-
+  <div>
+    <div class="inputBox shadow">
+      <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
+      <span class="addContainer" @click="addTodo">
+        <i class="fas fa-folder-plus addBtn"></i>
+      </span>
+    </div>
     <Modal 
       v-if="showModal" 
       @close="showModal = false"
