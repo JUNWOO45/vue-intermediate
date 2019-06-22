@@ -5,11 +5,11 @@
         <i 
           class="far fa-square checkBtn" 
           :class="{checkBtnClicked: todoItem.completed}"
-          @click="toggleComplete(todoItem, index)"
+          @click="toggleComplete({todoItem, index})"
         ></i>
         <i class="far fa-check-square invisible"
           :class="{alreadyChecked: todoItem.completed}"
-          @click="toggleComplete(todoItem, index)"
+          @click="toggleComplete({todoItem, index})"
         ></i>
         <span 
           class="individual-list" 
@@ -17,7 +17,7 @@
         >
           {{ todoItem.item }}
         </span>
-        <span class="removeContainer" @click="removeTodo(todoItem, index)">
+        <span class="removeContainer" @click="removeTodo({todoItem, index})">
           <i class="fas fa-trash-alt removeBtn"></i>
         </span>
       </li>
@@ -26,22 +26,27 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   methods : {
-    removeTodo(todoItem, index) {
-      this.$store.commit('removeOneItem', {
-        todoItem,
-        index
-      })
-    },
-    toggleComplete(todoItem, index) {
-      this.$store.commit('toggleOneItem', {
-        todoItem,
-        index
-      })
-    }
+    ...mapMutations({
+      removeTodo: 'removeOneItem',
+      toggleComplete: 'toggleOneItem'
+    }),
+
+    // removeTodo(todoItem, index) {
+    //   this.$store.commit('removeOneItem', {
+    //     todoItem,
+    //     index
+    //   })
+    // },
+    // toggleComplete(todoItem, index) {
+    //   this.$store.commit('toggleOneItem', {
+    //     todoItem,
+    //     index
+    //   })
+    // }
   },
   computed: {
     // todoItems() {
