@@ -14,9 +14,6 @@ export default {
     ...mapMutations({
       clearTodo: 'removeAll'
     })
-    // clearTodo() {
-    //   this.$store.commit('removeAll');
-    // }
   }
 }
 </script>
